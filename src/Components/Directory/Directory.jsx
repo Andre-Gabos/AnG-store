@@ -11,12 +11,13 @@ function Directory() {
 
   return (
     <div className="directory-menu">
-      {sections.map(({title, imageUrl, id, size}) => {
+      {sections.map(({title, imageUrl, id, size, linkUrl}) => {
         return (<MenuItem
           key={id} 
           title={title}
           imgUrl={imageUrl}
           size={size}
+          linkUrl={linkUrl}
         />);
       })}
     </div>
