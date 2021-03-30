@@ -46,7 +46,7 @@ function SingIn() {
 
         <div className="buttons">
           <CustomButton type="submit">Sign in</CustomButton>
-          <CustomButton onClick={SignInWithGoogle} isGoogleSignIn >Sign in with Google</CustomButton>
+          <CustomButton type="button" onClick={SignInWithGoogle} isGoogleSignIn >Sign in with Google</CustomButton>
         </div>
 
       </form>
