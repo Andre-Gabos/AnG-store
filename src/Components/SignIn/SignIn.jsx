@@ -35,13 +35,13 @@ function SingIn() {
       <h2>I already have an account</h2>
       <span>Sign In with your email and password</span>
 
-      <form>
+      <form onSubmit={handleClick}>
         <FormInput name="email" type="email" value={email} label="Email" change={handleChange} required />
         <FormInput name="password" type="password" value={password} label="Password" change={handleChange} required />
 
         <div className="buttons">
-          <CustomButton type="submit" onClick={handleClick}>Sign in</CustomButton>
-          <CustomButton onClick={handleClick} onClick={SignInWithGoogle} isGoogleSignIn >Sign in with Google</CustomButton>
+          <CustomButton type="submit">Sign in</CustomButton>
+          <CustomButton onClick={SignInWithGoogle} isGoogleSignIn >Sign in with Google</CustomButton>
         </div>
 
       </form>

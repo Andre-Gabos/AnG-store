@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { Route, Switch } from "react-router-dom";
 import { auth, createUserProfileDocument } from "./Firebase/firebase.utils";
 import Homepage from "./Pages/Homepage/Homepage";
