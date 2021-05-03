@@ -32,7 +32,6 @@ class App extends React.Component {
       }
 
       setCurrentUser(userAuth);
-      addCollectionAndDocuments("collection", collectionsArray.map(({ title, items }) => ({ title, items })));
     });
   }
 
