@@ -18,9 +18,8 @@ export async function createUserProfileDocument(userAuth, aditionalData) {
   const userRef = firestore.doc(`users/${userAuth.uid}`);
   const snapShot = await userRef.get();
 
-  console.log(snapShot);
   if (!snapShot.exists) {
-    const {displayName, email} = userAuth;
+    const { displayName, email } = userAuth;
     const createdAt = new Date();
 
     try {
@@ -36,6 +35,10 @@ export async function createUserProfileDocument(userAuth, aditionalData) {
   }
 
   return userRef;
+}
+
+export function addCollectionAndDocuments(collectionKey, objectsToAdd) {
+  const collectionRef = firestore.collection(collectionKey);
 }
 
 
