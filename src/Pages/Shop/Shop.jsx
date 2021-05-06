@@ -21,11 +21,24 @@ class Shop extends React.Component {
     const { updateCollections } = this.props;
     const collectionRef = firestore.collection("collection");
 
-    this.unsubscribeFromSnapshot = collectionRef.onSnapshot(snapshot => {
+    //API call using promisse + firebase.
+    collectionRef.get().then(snapshot => {
       const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
       updateCollections(collectionsMap);
       this.setState({ loading: false });
     });
+
+    //Database access through Firebase methods, using observer pattern.
+    // this.unsubscribeFromSnapshot = collectionRef.onSnapshot(snapshot => {
+    //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+    //   updateCollections(collectionsMap);
+    //   this.setState({ loading: false });
+    // });
+
+    //More common fetch pattern example, without accessing the necessary data to be displayed.
+    // fetch("https://firestore.googleapis.com/v1/projects/ang-clothing/databases/(default)/documents/collection")
+    //   .then(response => response.json())
+    //   .then(collection => console.log(collection))
   }
 
   render() {
