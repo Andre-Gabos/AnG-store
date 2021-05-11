@@ -65,7 +65,17 @@ export function convertCollectionsSnapshotToMap(collections) {
     accumulator[collection.title.toLowerCase()] = collection;
     return accumulator;
   }, {});
-}
+};
+
+
+export const getCurrentUser = () => {
+  return new Promisse((resolve, reject) => {
+    const unsuscribe = auth.onAuthStateChanged(userAuth => {
+      unsuscribe();
+      resolve(userAuth);
+    }, reject);
+  });
+};
 
 
 firebase.initializeApp(firebaseConfig);
