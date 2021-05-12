@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { Route } from 'react-router-dom';
 import { connect } from "react-redux";
 import { fetchCollectionsStart } from "../../Redux/Shop/shop.actions";
@@ -6,52 +6,46 @@ import CollectionOverviewContainer from "../../Components/CollectionOverview/Col
 import CollectionContainer from "../Collection/Collection.container";
 
 
-class Shop extends React.Component {
+function Shop({ fetchCollectionsStart, match }) {
 
-  componentDidMount() {
+  useEffect(() => {
+    fetchCollectionsStart();
+  }, []);
 
-    const { fetchCollectionsStart } = this.props;
-    fetchCollectionsStart()
+  //const collectionRef = firestore.collection("collection");
 
-    //const collectionRef = firestore.collection("collection");
+  //API call using promisse + firebase.
+  // collectionRef.get().then(snapshot => {
+  //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+  //   updateCollections(collectionsMap);
+  //   this.setState({ loading: false });
+  // });
 
-    //API call using promisse + firebase.
-    // collectionRef.get().then(snapshot => {
-    //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-    //   updateCollections(collectionsMap);
-    //   this.setState({ loading: false });
-    // });
+  //Database access through Firebase methods, using observer pattern.
+  // this.unsubscribeFromSnapshot = collectionRef.onSnapshot(snapshot => {
+  //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
+  //   updateCollections(collectionsMap);
+  //   this.setState({ loading: false });
+  // });
 
-    //Database access through Firebase methods, using observer pattern.
-    // this.unsubscribeFromSnapshot = collectionRef.onSnapshot(snapshot => {
-    //   const collectionsMap = convertCollectionsSnapshotToMap(snapshot);
-    //   updateCollections(collectionsMap);
-    //   this.setState({ loading: false });
-    // });
+  //More common fetch pattern example, without accessing the necessary data to be displayed.
+  // fetch("https://firestore.googleapis.com/v1/projects/ang-clothing/databases/(default)/documents/collection")
+  //   .then(response => response.json())
+  //   .then(collection => console.log(collection))
 
-    //More common fetch pattern example, without accessing the necessary data to be displayed.
-    // fetch("https://firestore.googleapis.com/v1/projects/ang-clothing/databases/(default)/documents/collection")
-    //   .then(response => response.json())
-    //   .then(collection => console.log(collection))
-  }
-
-  render() {
-    const { match } = this.props;
-    return (
-      <div className="shop-page">
-        <Route
-          exact path={`${match.path}`}
-          component={CollectionOverviewContainer}
-        />
-        <Route
-          path={`${match.path}/:collectionId`}
-          component={CollectionContainer}
-        />
-      </div>
-    )
-  }
-
-};
+  return (
+    <div className="shop-page">
+      <Route
+        exact path={`${match.path}`}
+        component={CollectionOverviewContainer}
+      />
+      <Route
+        path={`${match.path}/:collectionId`}
+        component={CollectionContainer}
+      />
+    </div>
+  )
+}
 
 const mapDispatchToProps = dispatch => ({
   fetchCollectionsStart: () => dispatch(fetchCollectionsStart())
