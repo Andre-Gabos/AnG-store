@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from 'react-router-dom';
 import { ReactComponent as Logo } from "../../Assets/cap.svg";
-import { auth } from "../../Firebase/firebase.utils";
 import { connect } from "react-redux";
 import { createStructuredSelector } from "reselect";
 import { selectCartHidden } from "../../Redux/Cart/cart.selectors";
