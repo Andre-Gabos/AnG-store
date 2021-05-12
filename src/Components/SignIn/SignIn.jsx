@@ -5,15 +5,14 @@ import FormInput from "../FormInput/FormInput";
 import CustomButton from "../CustomButton/CustomButton";
 import "./SignIn.styles.scss";
 
-function SingIn(props) {
-  const [{ email, password }, setInfo] = useState({
+function SingIn({ emailSignInStart, googleSignInStart }) {
+  const [{ email, password }, setCredentials] = useState({
     email: "",
     password: ""
   })
 
   async function handleSubmit(event) {
     event.preventDefault();
-    const { emailSignInStart } = props;
 
     emailSignInStart(email, password);
   }
@@ -21,15 +20,13 @@ function SingIn(props) {
   function handleChange(event) {
     const { value, name } = event.target;
 
-    setInfo((prevValue) => {
+    setCredentials((prevValue) => {
       return {
         ...prevValue,
         [name]: value
       }
     });
   }
-
-  const { googleSignInStart } = props;
 
   return (
     <div className="sign-in">
