@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import connect from "react-redux";
+import { connect } from "react-redux";
 import FormInput from "../FormInput/FormInput";
 import CustomButton from "../CustomButton/CustomButton";
 import { signUpStart } from "../../Redux/User/user.actions";
