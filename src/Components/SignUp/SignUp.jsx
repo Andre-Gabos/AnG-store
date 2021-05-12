@@ -5,20 +5,16 @@ import CustomButton from "../CustomButton/CustomButton";
 import { signUpStart } from "../../Redux/User/user.actions";
 import "./SignUp.styles.scss";
 
-function SignUp(props) {
-  const [userInfo, setUserInfo] = useState({
+function SignUp({ signUpStart }) {
+  const [{ displayName, email, password, confirmPassword }, setUserCredentials] = useState({
     displayName: "",
     email: "",
     password: "",
     confirmPassword: ""
   });
 
-  const { displayName, email, password, confirmPassword } = userInfo;
-
   async function handleSubmit(event) {
     event.preventDefault();
-
-    const { signUpStart } = props;
 
     if (password !== confirmPassword) {
       alert("Passwords don't match.");
@@ -31,7 +27,7 @@ function SignUp(props) {
   function handleChange(event) {
     const { value, name } = event.target;
 
-    setUserInfo((prevValue) => {
+    setUserCredentials((prevValue) => {
       return {
         ...prevValue,
         [name]: value
