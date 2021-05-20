@@ -9,7 +9,7 @@ import Signpage from "./Pages/SignPage/Signpage";
 import Shop from "./Pages/Shop/Shop";
 import Checkout from "./Pages/Checkout/Checkout";
 import Header from "./Components/Header/Header";
-import './App.css';
+import './App.scss';
 
 
 function App({ checkUserSession, currentUser }) {
