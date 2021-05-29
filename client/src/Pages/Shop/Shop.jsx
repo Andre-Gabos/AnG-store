@@ -2,6 +2,7 @@ import React, { lazy, Suspense, useEffect } from "react";
 import { Route } from 'react-router-dom';
 import { connect } from "react-redux";
 import { fetchCollectionsStart } from "../../Redux/Shop/shop.actions";
+import Spinner from "../../Components/Spinner/Spinner";
 
 const CollectionOverviewContainer = lazy(import("../../Components/CollectionOverview/CollectionOverview.container"));
 const CollectionContainer = lazy(import("../Collection/Collection.container"));
