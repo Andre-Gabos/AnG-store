@@ -25,16 +25,16 @@ function App({ checkUserSession, currentUser }) {
   return (
     <div>
       <Header />
-      <Switch>
-        <ErrorBoundary>
-          <Suspense fallback={<Spinner />}>
+      <ErrorBoundary>
+        <Suspense fallback={<Spinner />}>
+          <Switch>
             <Route exact path='/' component={Homepage} />
             <Route path='/shop' component={Shop} />
             <Route exact path='/checkout' component={Checkout} />
             <Route exact path='/signin' render={() => currentUser ? (<Redirect to="/" />) : (<Signpage />)} />
-          </Suspense>
-        </ErrorBoundary>
-      </Switch>
+          </Switch>
+        </Suspense>
+      </ErrorBoundary>
     </div>
   );
 }
