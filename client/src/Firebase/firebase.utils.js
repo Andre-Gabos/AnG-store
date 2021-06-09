@@ -12,6 +12,8 @@ const firebaseConfig = {
   measurementId: "G-DYWQ7BYJVY"
 };
 
+firebase.initializeApp(firebaseConfig);
+
 export async function createUserProfileDocument(userAuth, aditionalData) {
   if (!userAuth) return;
 
@@ -35,6 +37,20 @@ export async function createUserProfileDocument(userAuth, aditionalData) {
   }
 
   return userRef;
+}
+
+export async function getUserCartRef(userId) {
+  const cartsRef = firestore.collection("carts").where("userId", "==", userId);
+  const snapShot = await cartsRef.get();
+
+  if (!snapShot.empty) {
+    const cartDocRef = firestore.collection("carts").doc();
+    await cartDocRef.set({ userId, cartItems: [] });
+    return cartDocRef;
+
+  } else {
+    return snapShot.docs[0].ref();
+  }
 }
 
 export async function addCollectionAndDocuments(collectionKey, objectsToAdd) {
@@ -78,7 +94,6 @@ export const getCurrentUser = () => {
 };
 
 
-firebase.initializeApp(firebaseConfig);
 
 export const googleProvider = new firebase.auth.GoogleAuthProvider();
 googleProvider.setCustomParameters({ prompt: "select_account" });
