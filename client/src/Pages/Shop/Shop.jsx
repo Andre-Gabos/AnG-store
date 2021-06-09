@@ -4,8 +4,8 @@ import { connect } from "react-redux";
 import { fetchCollectionsStart } from "../../Redux/Shop/shop.actions";
 import Spinner from "../../Components/Spinner/Spinner";
 
-const CollectionOverviewContainer = lazy(import("../../Components/CollectionOverview/CollectionOverview.container"));
-const CollectionContainer = lazy(import("../Collection/Collection.container"));
+const CollectionOverviewContainer = lazy(() => import("../../Components/CollectionOverview/CollectionOverview.container"));
+const CollectionContainer = lazy(() => import("../Collection/Collection.container"));
 
 
 function Shop({ fetchCollectionsStart, match }) {
